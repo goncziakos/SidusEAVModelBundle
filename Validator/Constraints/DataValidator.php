@@ -78,10 +78,14 @@ class DataValidator extends ConstraintValidator
      */
     public function validate($data, Constraint $constraint)
     {
+        /**
+        * Remove this validation for use multi data class 
+        * 
         if (!$data instanceof $this->dataClass) {
             $class = \get_class($data);
             throw new \UnexpectedValueException("Can't validate data of class {$class}");
         }
+        */
         $context = $this->context; // VERY IMPORTANT ! context will be lost otherwise
         foreach ($data->getFamily()->getAttributes() as $attribute) {
             if ($attribute->isRequired() && $data->isEmpty($attribute)) {
